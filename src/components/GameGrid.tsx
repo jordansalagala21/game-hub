@@ -11,25 +11,23 @@ const GameGrid = () => {
   return (
     <>
       {error && <Text>{error}</Text>}
-      <ul>
-        <SimpleGrid
-          columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-          padding="15px"
-          spacing={3}
-        >
-          {isLoading &&
-            skeletons.map((skeleton) => (
-              <GameCardContainer>
-                <GameCardSkeleton key={skeleton} />
-              </GameCardContainer>
-            ))}
-          {data.map((data) => (
-            <GameCardContainer>
-              <GameCard key={data.id} game={data} />
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        padding="15px"
+        spacing={3}
+      >
+        {isLoading &&
+          skeletons.map((skeleton) => (
+            <GameCardContainer key={skeleton}>
+              <GameCardSkeleton />
             </GameCardContainer>
           ))}
-        </SimpleGrid>
-      </ul>
+        {data.map((game) => (
+          <GameCardContainer key={game.id}>
+            <GameCard game={game} />
+          </GameCardContainer>
+        ))}
+      </SimpleGrid>
     </>
   );
 };
